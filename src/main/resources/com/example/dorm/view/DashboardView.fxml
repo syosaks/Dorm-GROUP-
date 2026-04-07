@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.dorm.controller.DashboardController"
+            prefWidth="900" prefHeight="600">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: #2196F3; -fx-padding: 15;">
+            <Label fx:id="welcomeLabel" text="Welcome" style="-fx-text-fill: white;">
+                <font><Font size="18.0" /></font>
+            </Label>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Logout" onAction="#onLogout"
+                    style="-fx-background-color: white; -fx-text-fill: #2196F3;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox alignment="CENTER" spacing="15">
+            <padding>
+                <Insets bottom="40.0" left="200.0" right="200.0" top="40.0"/>
+            </padding>
+
+            <Label text="Dashboard" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+            <Button text="Reserve Room" onAction="#onReserveRoom" maxWidth="Infinity"
+                    style="-fx-font-size: 14px; -fx-padding: 10;"/>
+            <Button text="Pay Rent" onAction="#onPayRent" maxWidth="Infinity"
+                    style="-fx-font-size: 14px; -fx-padding: 10;"/>
+            <Button text="View Records" onAction="#onViewRecords" maxWidth="Infinity"
+                    style="-fx-font-size: 14px; -fx-padding: 10;"/>
+            <Button text="Assign Room" onAction="#onAssignRoom" maxWidth="Infinity"
+                    style="-fx-font-size: 14px; -fx-padding: 10;"/>
+            <Button text="Approve Reservation" onAction="#onApproveReservation" maxWidth="Infinity"
+                    style="-fx-font-size: 14px; -fx-padding: 10;"/>
+            <Button text="View Reports" onAction="#onViewReports" maxWidth="Infinity"
+                    style="-fx-font-size: 14px; -fx-padding: 10;"/>
+        </VBox>
+    </center>
+</BorderPane>

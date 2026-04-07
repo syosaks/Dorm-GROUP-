@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="15.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.dorm.controller.ViewReportsController"
+      prefWidth="900" prefHeight="600">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label text="View Reports">
+        <font><Font size="20.0" /></font>
+    </Label>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Report Type:"/>
+        <ComboBox fx:id="reportTypeComboBox" prefWidth="200"/>
+        <Label text="From:"/>
+        <TextField fx:id="dateFromField" promptText="YYYY-MM-DD" prefWidth="120"/>
+        <Label text="To:"/>
+        <TextField fx:id="dateToField" promptText="YYYY-MM-DD" prefWidth="120"/>
+        <Button text="Generate" onAction="#onGenerateButtonClick"
+                style="-fx-background-color: #2196F3; -fx-text-fill: white;"/>
+    </HBox>
+
+    <Label fx:id="summaryLabel" text="Summary will appear here"
+           style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+
+    <TableView fx:id="reportTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn text="Category" prefWidth="200"/>
+            <TableColumn text="Count" prefWidth="100"/>
+            <TableColumn text="Details" prefWidth="300"/>
+        </columns>
+    </TableView>
+
+    <Button text="Back" onAction="#onBackButtonClick"/>
+</VBox>

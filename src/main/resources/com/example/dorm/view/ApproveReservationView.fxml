@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="15.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.dorm.controller.ApproveReservationController"
+      prefWidth="900" prefHeight="600">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label text="Approve Reservations">
+        <font><Font size="20.0" /></font>
+    </Label>
+
+    <TableView fx:id="reservationsTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn text="Tenant" prefWidth="200"/>
+            <TableColumn text="Room" prefWidth="150"/>
+            <TableColumn text="Request Date" prefWidth="150"/>
+            <TableColumn text="Status" prefWidth="120"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Approve" onAction="#onApproveButtonClick"
+                style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+        <Button text="Reject" onAction="#onRejectButtonClick"
+                style="-fx-background-color: #f44336; -fx-text-fill: white;"/>
+        <Button text="Back" onAction="#onBackButtonClick"/>
+    </HBox>
+</VBox>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="15.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.dorm.controller.PayRentController"
+      prefWidth="900" prefHeight="600">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label text="Pay Rent">
+        <font><Font size="20.0" /></font>
+    </Label>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Tenant:"/>
+        <ComboBox fx:id="tenantComboBox" prefWidth="200"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Amount:"/>
+        <TextField fx:id="amountField" promptText="Enter amount"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Month:"/>
+        <TextField fx:id="monthField" promptText="e.g. April 2026"/>
+    </HBox>
+
+    <Button text="Pay" onAction="#onPayButtonClick"
+            style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+
+    <Label text="Payment History" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+
+    <TableView fx:id="paymentHistoryTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn text="Date" prefWidth="150"/>
+            <TableColumn text="Amount" prefWidth="120"/>
+            <TableColumn text="Month Covered" prefWidth="150"/>
+            <TableColumn text="Status" prefWidth="120"/>
+        </columns>
+    </TableView>
+
+    <Button text="Back" onAction="#onBackButtonClick"/>
+</VBox>
