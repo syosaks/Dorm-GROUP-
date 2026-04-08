@@ -3,7 +3,7 @@
 ## Group Members
 - Cassius L. Cenas
 - Caswell Phyl E. Sarita
-- Marielle Faith
+- Marielle Faith Basañez
 - Nhiel David D. Miranda
 - Ramzhan S. Booc
 
