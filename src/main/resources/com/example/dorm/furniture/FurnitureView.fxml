@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="12.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.dorm.furniture.FurnitureController"
+      prefWidth="1000" prefHeight="650">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label text="Furniture Management">
+        <font><Font size="20.0" /></font>
+    </Label>
+    <Label text="Track furniture condition per room. Marking an item BROKEN auto-creates a HIGH priority maintenance ticket."
+           style="-fx-text-fill: #C62828; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+
+    <!-- Add furniture form -->
+    <TitledPane text="Add Furniture" expanded="false"
+                style="-fx-background-color: #FFF3E0;">
+        <VBox spacing="8" style="-fx-padding: 10;">
+            <GridPane hgap="12" vgap="8">
+                <Label text="Room:"        GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <ComboBox fx:id="addRoomCombo" prefWidth="160" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                <Label text="Item Type:"   GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <TextField fx:id="itemTypeField" promptText="e.g. Bed Frame, Study Desk"
+                           prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                <Label text="Condition:"   GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <ComboBox fx:id="conditionCombo" prefWidth="130" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                <Label text="Serial No.:"  GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <TextField fx:id="serialField" promptText="e.g. BF-101-003"
+                           prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+            </GridPane>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Button text="Add Furniture" onAction="#onAddFurnitureClick"
+                        style="-fx-background-color: #E65100; -fx-text-fill: white;"/>
+                <Label fx:id="statusLabel" text="" wrapText="true" maxWidth="400"/>
+            </HBox>
+        </VBox>
+    </TitledPane>
+
+    <!-- Filter -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Filter by Room:" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+        <ComboBox fx:id="roomFilterCombo" prefWidth="160"/>
+    </HBox>
+
+    <TableView fx:id="furnitureTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn text="Room"        prefWidth="100"/>
+            <TableColumn text="Item Type"   prefWidth="180"/>
+            <TableColumn text="Condition"   prefWidth="110"/>
+            <TableColumn text="Serial No."  prefWidth="180"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Mark Good"    onAction="#onMarkGoodClick"
+                style="-fx-background-color: #388E3C; -fx-text-fill: white;"/>
+        <Button text="Mark Damaged" onAction="#onMarkDamagedClick"
+                style="-fx-background-color: #F57C00; -fx-text-fill: white;"/>
+        <Button text="Mark BROKEN"  onAction="#onMarkBrokenClick"
+                style="-fx-background-color: #C62828; -fx-text-fill: white;"/>
+        <Button text="Back to Dashboard" onAction="#onBackButtonClick"/>
+    </HBox>
+</VBox>

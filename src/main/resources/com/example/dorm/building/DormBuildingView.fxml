@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="12.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.dorm.building.DormBuildingController"
+      prefWidth="1000" prefHeight="650">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label text="Dorm Buildings">
+        <font><Font size="20.0" /></font>
+    </Label>
+
+    <!-- Buildings summary table -->
+    <TableView fx:id="buildingsTable" prefHeight="160">
+        <columns>
+            <TableColumn text="Building Name" prefWidth="220"/>
+            <TableColumn text="Floors"        prefWidth="100"/>
+            <TableColumn text="Address"       prefWidth="300"/>
+            <TableColumn text="Rooms"         prefWidth="110"/>
+        </columns>
+    </TableView>
+
+    <!-- Add new building form -->
+    <TitledPane text="Add New Building" expanded="false"
+                style="-fx-background-color: #E8F5E9;">
+        <VBox spacing="8" style="-fx-padding: 10;">
+            <GridPane hgap="12" vgap="8">
+                <Label text="Building Name:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <TextField fx:id="buildingNameField" promptText="e.g. Building C — East Wing"
+                           prefWidth="300" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                <Label text="Total Floors:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <TextField fx:id="totalFloorsField" promptText="e.g. 3"
+                           prefWidth="100" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                <Label text="Address:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <TextField fx:id="addressField" promptText="e.g. 127 Dormitory St., Campus"
+                           prefWidth="300" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            </GridPane>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Button text="Add Building" onAction="#onAddBuildingClick"
+                        style="-fx-background-color: #388E3C; -fx-text-fill: white;"/>
+                <Label fx:id="statusLabel" text=""/>
+            </HBox>
+        </VBox>
+    </TitledPane>
+
+    <Separator/>
+
+    <!-- Rooms by building -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Rooms by Building:" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+        <ComboBox fx:id="buildingFilterCombo" prefWidth="200"/>
+    </HBox>
+
+    <TableView fx:id="roomsTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn text="Room"     prefWidth="80"/>
+            <TableColumn text="Building" prefWidth="180"/>
+            <TableColumn text="Floor"    prefWidth="90"/>
+            <TableColumn text="Capacity" prefWidth="90"/>
+            <TableColumn text="Status"   prefWidth="110"/>
+            <TableColumn text="Rate"     prefWidth="120"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Back to Dashboard" onAction="#onBackButtonClick"/>
+    </HBox>
+</VBox>

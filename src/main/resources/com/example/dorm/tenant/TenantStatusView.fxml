@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.dorm.tenant.TenantStatusController"
+            prefWidth="520" prefHeight="460">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="10"
+              style="-fx-background-color: #1565C0; -fx-padding: 14;">
+            <Label text="DormLink" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 20px;"/>
+            <Label text="|" style="-fx-text-fill: #90CAF9; -fx-font-size: 18px;"/>
+            <Label text="My Status" style="-fx-text-fill: white; -fx-font-size: 14px;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="14" style="-fx-padding: 30; -fx-background-color: #F9F9F9;">
+
+            <!-- Personal Info -->
+            <Label text="Personal Information"
+                   style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #1565C0;"/>
+            <Label fx:id="lblName"    text="Name: —"    style="-fx-font-size: 13px;"/>
+            <Label fx:id="lblContact" text="Contact: —" style="-fx-font-size: 13px;"/>
+            <Label fx:id="lblEmail"   text="Email: —"   style="-fx-font-size: 13px;"/>
+
+            <Separator/>
+
+            <!-- Room -->
+            <Label text="Room Assignment"
+                   style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #1565C0;"/>
+            <Label fx:id="lblRoom" text="Room: —" style="-fx-font-size: 13px;"/>
+            <Label fx:id="lblRate" text="Monthly Rate: —" style="-fx-font-size: 13px;"/>
+
+            <Separator/>
+
+            <!-- Reservation -->
+            <Label text="Reservation Status"
+                   style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #1565C0;"/>
+            <Label fx:id="lblReservation" text="No active reservation."
+                   style="-fx-font-size: 13px;" wrapText="true"/>
+
+            <Region VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox style="-fx-padding: 14; -fx-background-color: #EEEEEE;">
+            <Button text="← Back to Dashboard" onAction="#onBack"
+                    style="-fx-background-color: #1565C0; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 20;"/>
+        </HBox>
+    </bottom>
+</BorderPane>

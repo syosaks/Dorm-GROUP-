@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="12.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.dorm.visitor.VisitorLogController"
+      prefWidth="1000" prefHeight="650">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label text="Visitor Log">
+        <font><Font size="20.0" /></font>
+    </Label>
+    <Label text="Log visitors arriving and departing. Time Out must be after Time In."
+           style="-fx-text-fill: #555; -fx-font-size: 12px;"/>
+    <Label text="ℹ  How it works: Visitors do NOT need an account. When your guest arrives, YOU (the tenant) fill in their name, purpose, and time in. Update the Time Out when they leave. Admin can view all entries for security monitoring."
+           wrapText="true"
+           style="-fx-text-fill: white; -fx-background-color: #1565C0; -fx-padding: 8 12; -fx-background-radius: 4; -fx-font-size: 12px;"/>
+
+    <!-- Submit section: TENANT only -->
+    <VBox fx:id="submitSection" spacing="8"
+          style="-fx-border-color: #80DEEA; -fx-border-radius: 5; -fx-padding: 12; -fx-background-color: #E0F7FA;">
+        <Label text="Log a New Visitor" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+        <GridPane hgap="12" vgap="8">
+            <Label text="Visitor Name:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="visitorNameField" promptText="Full name of visitor"
+                       prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Purpose:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="purposeField" promptText="e.g. Family visit, Study group"
+                       prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="Time In (HH:mm):" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="timeInField" promptText="14:30"
+                       prefWidth="100" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+            <Label text="Time Out (HH:mm):" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <TextField fx:id="timeOutField" promptText="16:00 (optional at log-in)"
+                       prefWidth="100" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        </GridPane>
+        <Button text="Log Visitor" onAction="#onLogVisitorClick"
+                style="-fx-background-color: #00838F; -fx-text-fill: white;"/>
+    </VBox>
+
+    <Label text="Visitor Log History" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+
+    <TableView fx:id="logsTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn text="Visitor"   prefWidth="150"/>
+            <TableColumn text="Resident"  prefWidth="130"/>
+            <TableColumn text="Date"      prefWidth="100"/>
+            <TableColumn text="Time In"   prefWidth="90"/>
+            <TableColumn text="Time Out"  prefWidth="90"/>
+            <TableColumn text="Purpose"   prefWidth="230"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button fx:id="btnUpdateTimeOut" text="Update Time Out" onAction="#onUpdateTimeOutClick"
+                style="-fx-background-color: #00838F; -fx-text-fill: white;"/>
+        <Button text="Back to Dashboard" onAction="#onBackButtonClick"/>
+    </HBox>
+</VBox>

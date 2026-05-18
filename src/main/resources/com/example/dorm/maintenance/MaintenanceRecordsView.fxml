@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="12.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.dorm.maintenance.MaintenanceRecordsController"
+      prefWidth="900" prefHeight="600">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <HBox alignment="CENTER_LEFT" spacing="10"
+          style="-fx-background-color: #EDE7F6; -fx-padding: 10; -fx-border-radius: 5;">
+        <Label text="Resolved Maintenance Records">
+            <font><Font size="20.0" /></font>
+        </Label>
+    </HBox>
+
+    <Label text="All maintenance requests that have been resolved are archived here."
+           style="-fx-text-fill: #555; -fx-font-size: 12px;"/>
+
+    <Label fx:id="summaryLabel" text="Total Resolved: 0"
+           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #4A148C;"/>
+
+    <TableView fx:id="recordsTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn text="Resident"    prefWidth="150"/>
+            <TableColumn text="Description" prefWidth="290"/>
+            <TableColumn text="Date"        prefWidth="110"/>
+            <TableColumn text="Priority"    prefWidth="90"/>
+            <TableColumn text="Status"      prefWidth="100"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Back to Maintenance" onAction="#onBackButtonClick"
+                style="-fx-background-color: #6A1B9A; -fx-text-fill: white;"/>
+    </HBox>
+</VBox>

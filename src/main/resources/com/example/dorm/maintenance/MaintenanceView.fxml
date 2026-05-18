@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="12.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.dorm.maintenance.MaintenanceController"
+      prefWidth="900" prefHeight="600">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label text="Maintenance Requests — Active">
+        <font><Font size="20.0" /></font>
+    </Label>
+    <Label text="Showing PENDING and IN_PROGRESS requests. Resolved records are in Maintenance Records."
+           style="-fx-text-fill: #666; -fx-font-size: 12px;"/>
+
+    <!-- Submit section: TENANT only -->
+    <VBox fx:id="submitSection" spacing="10"
+          style="-fx-border-color: #90CAF9; -fx-border-radius: 5; -fx-padding: 12; -fx-background-color: #E3F2FD;">
+        <Label text="Submit a New Request" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+        <TextArea fx:id="descriptionArea" promptText="Describe the issue (e.g. leaking faucet, broken AC)..."
+                  prefRowCount="3" wrapText="true"/>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Priority:"/>
+            <ComboBox fx:id="priorityCombo" prefWidth="120"/>
+        </HBox>
+        <Button text="Submit Request" onAction="#onSubmitButtonClick"
+                style="-fx-background-color: #1976D2; -fx-text-fill: white;"/>
+    </VBox>
+
+    <Label text="Active Requests" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+
+    <TableView fx:id="requestsTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn text="Resident"    prefWidth="140"/>
+            <TableColumn text="Description" prefWidth="280"/>
+            <TableColumn text="Date"        prefWidth="110"/>
+            <TableColumn text="Status"      prefWidth="110"/>
+            <TableColumn text="Priority"    prefWidth="90"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button fx:id="btnInProgress" text="Mark In Progress" onAction="#onMarkInProgress"
+                style="-fx-background-color: #FF9800; -fx-text-fill: white;"/>
+        <Button fx:id="btnResolved" text="Mark Resolved" onAction="#onMarkResolved"
+                style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+        <Button text="Resolved Records" onAction="#onViewRecordsClick"
+                style="-fx-background-color: #6A1B9A; -fx-text-fill: white;"/>
+        <Button text="Back to Dashboard" onAction="#onBackButtonClick"/>
+    </HBox>
+</VBox>

@@ -38,3 +38,9 @@ build/
 ### Mac OS ###
 .DS_Store
 
+### Database files ###
+*.db
+
+### IntelliJ workspace state ###
+.idea/workspace.xml
+

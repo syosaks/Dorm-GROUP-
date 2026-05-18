@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="15.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.dorm.tenant.AddTenantController"
+      prefWidth="900" prefHeight="600">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label text="Add New Tenant">
+        <font><Font size="20.0" /></font>
+    </Label>
+
+    <GridPane hgap="12" vgap="10"
+              style="-fx-border-color: #ddd; -fx-border-radius: 5; -fx-padding: 12; -fx-background-color: #f9f9f9;">
+        <Label text="Username:" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="usernameField" promptText="Login username" prefWidth="250"
+                   GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Password:" GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <PasswordField fx:id="passwordField" promptText="Login password"
+                       GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Full Name:" GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="nameField" promptText="Tenant full name"
+                   GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Label text="Contact No.:" GridPane.rowIndex="3" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="contactField" promptText="e.g. 09171234567"
+                   GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+        <Label text="Email:" GridPane.rowIndex="4" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="emailField" promptText="email@example.com"
+                   GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="Add Tenant" onAction="#onAddButtonClick"
+                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 13px; -fx-padding: 8 16;"/>
+        <Label fx:id="statusLabel" text="" style="-fx-font-size: 13px;"/>
+    </HBox>
+
+    <Separator/>
+
+    <Label text="Registered Tenants" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+
+    <TableView fx:id="tenantsTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn text="Full Name" prefWidth="180"/>
+            <TableColumn text="Username" prefWidth="130"/>
+            <TableColumn text="Contact No." prefWidth="140"/>
+            <TableColumn text="Email" prefWidth="200"/>
+            <TableColumn text="Room" prefWidth="100"/>
+        </columns>
+    </TableView>
+
+    <Button text="Back to Dashboard" onAction="#onBackButtonClick"/>
+</VBox>

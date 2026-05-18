@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.dorm.dashboard.DashboardController"
+            prefWidth="1000" prefHeight="650">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="10"
+              style="-fx-background-color: #1565C0; -fx-padding: 14;">
+            <Label text="DormLink" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 20px;"/>
+            <Label text="|" style="-fx-text-fill: #90CAF9; -fx-font-size: 18px;"/>
+            <Label fx:id="welcomeLabel" text="Welcome" style="-fx-text-fill: white; -fx-font-size: 14px;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Logout" onAction="#onLogout"
+                    style="-fx-background-color: white; -fx-text-fill: #1565C0; -fx-font-weight: bold;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true"
+                    style="-fx-background-color: transparent; -fx-background: transparent;">
+            <VBox alignment="TOP_CENTER" spacing="10">
+                <padding>
+                    <Insets bottom="30.0" left="180.0" right="180.0" top="20.0"/>
+                </padding>
+
+                <Label text="Dashboard" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-padding: 0 0 8 0;"/>
+
+                <!-- Existing navigation -->
+                <Button fx:id="btnMyStatus" text="My Room Status" onAction="#onMyStatus"
+                        maxWidth="Infinity" style="-fx-font-size: 13px; -fx-padding: 9; -fx-background-color: #1565C0; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                <Button fx:id="btnReserveRoom" text="Reserve Room" onAction="#onReserveRoom"
+                        maxWidth="Infinity" style="-fx-font-size: 13px; -fx-padding: 9; -fx-background-color: #1976D2; -fx-text-fill: white;"/>
+                <Button fx:id="btnPayRent" text="Pay Rent" onAction="#onPayRent"
+                        maxWidth="Infinity" style="-fx-font-size: 13px; -fx-padding: 9; -fx-background-color: #388E3C; -fx-text-fill: white;"/>
+                <Button fx:id="btnAssignRoom" text="Assign Room" onAction="#onAssignRoom"
+                        maxWidth="Infinity" style="-fx-font-size: 13px; -fx-padding: 9;"/>
+                <Button fx:id="btnApproveReservation" text="Approve Reservation" onAction="#onApproveReservation"
+                        maxWidth="Infinity" style="-fx-font-size: 13px; -fx-padding: 9;"/>
+                <Button fx:id="btnViewRecords" text="View Records" onAction="#onViewRecords"
+                        maxWidth="Infinity" style="-fx-font-size: 13px; -fx-padding: 9;"/>
+                <Button fx:id="btnViewReports" text="View Reports" onAction="#onViewReports"
+                        maxWidth="Infinity" style="-fx-font-size: 13px; -fx-padding: 9;"/>
+                <Button fx:id="btnAddTenant" text="Add New Resident" onAction="#onAddTenant"
+                        maxWidth="Infinity" style="-fx-font-size: 13px; -fx-padding: 9;"/>
+
+                <Separator/>
+
+                <!-- New DormLink features -->
+                <Label text="DormLink Features" style="-fx-font-size: 12px; -fx-text-fill: #666; -fx-font-style: italic;"/>
+
+                <Button fx:id="btnMaintenance" text="Maintenance Requests" onAction="#onMaintenance"
+                        maxWidth="Infinity" style="-fx-font-size: 13px; -fx-padding: 9; -fx-background-color: #F57C00; -fx-text-fill: white;"/>
+                <Button fx:id="btnMaintenanceRecords" text="Maintenance Records (Resolved)" onAction="#onMaintenanceRecords"
+                        maxWidth="Infinity" style="-fx-font-size: 13px; -fx-padding: 9; -fx-background-color: #6A1B9A; -fx-text-fill: white;"/>
+                <Button fx:id="btnVisitorLog" text="Visitor Log" onAction="#onVisitorLog"
+                        maxWidth="Infinity" style="-fx-font-size: 13px; -fx-padding: 9; -fx-background-color: #00838F; -fx-text-fill: white;"/>
+                <Button fx:id="btnDormBuildings" text="Dorm Buildings" onAction="#onDormBuildings"
+                        maxWidth="Infinity" style="-fx-font-size: 13px; -fx-padding: 9; -fx-background-color: #37474F; -fx-text-fill: white;"/>
+                <Button fx:id="btnFurniture" text="Furniture Management" onAction="#onFurniture"
+                        maxWidth="Infinity" style="-fx-font-size: 13px; -fx-padding: 9; -fx-background-color: #4E342E; -fx-text-fill: white;"/>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

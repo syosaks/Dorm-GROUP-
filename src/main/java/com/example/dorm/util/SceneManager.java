@@ -17,7 +17,7 @@ public class SceneManager {
     public static void switchTo(String fxmlFile) {
         try {
             FXMLLoader loader = new FXMLLoader(
-                SceneManager.class.getResource("/com/example/dorm/view/" + fxmlFile)
+                SceneManager.class.getResource("/com/example/dorm/" + fxmlFile)
             );
             Parent root = loader.load();
             primaryStage.setScene(new Scene(root, 900, 600));
