@@ -5,59 +5,164 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<VBox spacing="15.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.dorm.tenant.AddTenantController"
-      prefWidth="900" prefHeight="600">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<BorderPane prefWidth="1100" prefHeight="680"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.dorm.tenant.AddTenantController"
+            style="-fx-background-color: #12131f;">
 
-    <Label text="Add New Tenant">
-        <font><Font size="20.0" /></font>
-    </Label>
+    <!-- LEFT SIDEBAR -->
+    <left>
+        <VBox prefWidth="260" style="-fx-background-color: #1a1b2e;">
+            <!-- Logo -->
+            <HBox style="-fx-background-color: #12131f; -fx-padding: 16 14; -fx-spacing: 8;" alignment="CENTER_LEFT">
+                <Label text="DL"
+                       style="-fx-background-color: #f5c400; -fx-text-fill: #12131f; -fx-font-weight: bold; -fx-font-size: 13px; -fx-background-radius: 6; -fx-padding: 4 8;"/>
+                <VBox spacing="1">
+                    <Label text="DormLink"
+                           style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 13px;"/>
+                    <Label text="Management System"
+                           style="-fx-text-fill: #555570; -fx-font-size: 9px;"/>
+                </VBox>
+            </HBox>
 
-    <GridPane hgap="12" vgap="10"
-              style="-fx-border-color: #ddd; -fx-border-radius: 5; -fx-padding: 12; -fx-background-color: #f9f9f9;">
-        <Label text="Username:" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
-        <TextField fx:id="usernameField" promptText="Login username" prefWidth="250"
-                   GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <!-- Nav Header -->
+            <Label text="NAVIGATION"
+                   style="-fx-text-fill: #555570; -fx-font-size: 9px; -fx-font-weight: bold; -fx-padding: 10 14 4 14;"/>
 
-        <Label text="Password:" GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
-        <PasswordField fx:id="passwordField" promptText="Login password"
-                       GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <!-- Nav Items -->
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                        style="-fx-background: transparent; -fx-background-color: transparent; -fx-border-color: transparent;">
+                <VBox fx:id="navContainer" spacing="4" style="-fx-padding: 0 10 10 10; -fx-background-color: transparent;">
+                    <Button text="My Room Status" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Reserve Room" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Pay Rent" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Assign Room" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Approve Reservation" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="View Records" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="View Reports" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <!-- ACTIVE -->
+                    <Button text="Add New Resident" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: #252636; -fx-text-fill: #f5c400; -fx-font-size: 12px; -fx-font-weight: bold; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Maintenance" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Maintenance Records" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Visitor Log" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Dorm Buildings" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Furniture Mgmt" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                </VBox>
+            </ScrollPane>
 
-        <Label text="Full Name:" GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
-        <TextField fx:id="nameField" promptText="Tenant full name"
-                   GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            <!-- Back Button -->
+            <VBox style="-fx-padding: 12; -fx-border-color: #2e2f45 transparent transparent transparent; -fx-border-width: 1 0 0 0;">
+                <Button text="← Back to Dashboard" onAction="#onBackButtonClick"
+                        maxWidth="Infinity"
+                        style="-fx-background-color: #e05050; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-padding: 10; -fx-cursor: hand;"/>
+            </VBox>
+        </VBox>
+    </left>
 
-        <Label text="Contact No.:" GridPane.rowIndex="3" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
-        <TextField fx:id="contactField" promptText="e.g. 09171234567"
-                   GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+    <!-- CENTER -->
+    <center>
+        <VBox spacing="0" style="-fx-background-color: #12131f;">
+            <padding><Insets top="28" right="32" bottom="28" left="32"/></padding>
 
-        <Label text="Email:" GridPane.rowIndex="4" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
-        <TextField fx:id="emailField" promptText="email@example.com"
-                   GridPane.rowIndex="4" GridPane.columnIndex="1"/>
-    </GridPane>
+            <Label text="Dashboard  /  Add New Resident"
+                   style="-fx-text-fill: #8a8a9a; -fx-font-size: 11px;"/>
+            <Label text="Add New Resident"
+                   style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 26px; -fx-padding: 0 0 20 0;"/>
 
-    <HBox spacing="10" alignment="CENTER_LEFT">
-        <Button text="Add Tenant" onAction="#onAddButtonClick"
-                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 13px; -fx-padding: 8 16;"/>
-        <Label fx:id="statusLabel" text="" style="-fx-font-size: 13px;"/>
-    </HBox>
+            <!-- Card -->
+            <VBox spacing="14"
+                  style="-fx-background-color: #1e2035; -fx-padding: 24; -fx-background-radius: 10; -fx-border-color: #2e2f45; -fx-border-radius: 10;">
+                <VBox.margin><Insets bottom="20"/></VBox.margin>
 
-    <Separator/>
+                <Label text="ACCOUNT DETAILS"
+                       style="-fx-text-fill: #8a8a9a; -fx-font-size: 10px; -fx-font-weight: bold;"/>
 
-    <Label text="Registered Tenants" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <GridPane hgap="16" vgap="12">
+                    <Label text="Username *"
+                           style="-fx-text-fill: #8a8a9a; -fx-font-size: 11px;"
+                           GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="usernameField" promptText="Login username"
+                               GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-    <TableView fx:id="tenantsTable" VBox.vgrow="ALWAYS">
-        <columns>
-            <TableColumn text="Full Name" prefWidth="180"/>
-            <TableColumn text="Username" prefWidth="130"/>
-            <TableColumn text="Contact No." prefWidth="140"/>
-            <TableColumn text="Email" prefWidth="200"/>
-            <TableColumn text="Room" prefWidth="100"/>
-        </columns>
-    </TableView>
+                    <Label text="Password *"
+                           style="-fx-text-fill: #8a8a9a; -fx-font-size: 11px;"
+                           GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <PasswordField fx:id="passwordField" promptText="Min. 4 characters"
+                                   GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                </GridPane>
 
-    <Button text="Back to Dashboard" onAction="#onBackButtonClick"/>
-</VBox>
+                <Label text="PERSONAL INFORMATION"
+                       style="-fx-text-fill: #8a8a9a; -fx-font-size: 10px; -fx-font-weight: bold; -fx-padding: 8 0 0 0;"/>
+
+                <GridPane hgap="16" vgap="12">
+                    <Label text="Full Name *"
+                           style="-fx-text-fill: #8a8a9a; -fx-font-size: 11px;"
+                           GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="nameField" promptText="Tenant full name"
+                               GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="Contact No."
+                           style="-fx-text-fill: #8a8a9a; -fx-font-size: 11px;"
+                           GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="contactField" promptText="e.g. 09171234567"
+                               GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                    <Label text="Email"
+                           style="-fx-text-fill: #8a8a9a; -fx-font-size: 11px;"
+                           GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <TextField fx:id="emailField" promptText="email@example.com"
+                               GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                </GridPane>
+
+                <HBox spacing="12" style="-fx-padding: 8 0 0 0;">
+                    <Button text="Add Resident →" onAction="#onAddButtonClick"
+                            style="-fx-background-color: #f5c400; -fx-text-fill: #12131f; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                    <Label fx:id="statusLabel" text=""
+                           style="-fx-font-size: 13px;"/>
+                </HBox>
+            </VBox>
+
+            <Region prefHeight="20"/>
+
+            <Label text="Registered Tenants"
+                   style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15px; -fx-padding: 0 0 8 0;"/>
+
+            <TableView fx:id="tenantsTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn text="Full Name" prefWidth="180"/>
+                    <TableColumn text="Username" prefWidth="130"/>
+                    <TableColumn text="Contact No." prefWidth="140"/>
+                    <TableColumn text="Email" prefWidth="200"/>
+                    <TableColumn text="Room" prefWidth="100"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>

@@ -5,29 +5,124 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<VBox spacing="15.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.dorm.reservation.ReserveRoomController"
-      prefWidth="900" prefHeight="600">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<BorderPane prefWidth="1100" prefHeight="680"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.dorm.reservation.ReserveRoomController"
+            style="-fx-background-color: #12131f;">
 
-    <Label text="Reserve a Room">
-        <font><Font size="20.0" /></font>
-    </Label>
+    <!-- LEFT SIDEBAR -->
+    <left>
+        <VBox prefWidth="260" style="-fx-background-color: #1a1b2e;">
+            <!-- Logo -->
+            <HBox style="-fx-background-color: #12131f; -fx-padding: 16 14; -fx-spacing: 8;" alignment="CENTER_LEFT">
+                <Label text="DL"
+                       style="-fx-background-color: #f5c400; -fx-text-fill: #12131f; -fx-font-weight: bold; -fx-font-size: 13px; -fx-background-radius: 6; -fx-padding: 4 8;"/>
+                <VBox spacing="1">
+                    <Label text="DormLink"
+                           style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 13px;"/>
+                    <Label text="Management System"
+                           style="-fx-text-fill: #555570; -fx-font-size: 9px;"/>
+                </VBox>
+            </HBox>
 
-    <TableView fx:id="roomsTable" VBox.vgrow="ALWAYS">
-        <columns>
-            <TableColumn text="Room Number" prefWidth="150"/>
-            <TableColumn text="Capacity" prefWidth="100"/>
-            <TableColumn text="Status" prefWidth="120"/>
-            <TableColumn text="Monthly Rate" prefWidth="150"/>
-        </columns>
-    </TableView>
+            <!-- Nav Header -->
+            <Label text="NAVIGATION"
+                   style="-fx-text-fill: #555570; -fx-font-size: 9px; -fx-font-weight: bold; -fx-padding: 10 14 4 14;"/>
 
-    <HBox spacing="10" alignment="CENTER_RIGHT">
-        <Button text="Reserve Selected Room" onAction="#onReserveButtonClick"
-                style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
-        <Button text="Back" onAction="#onBackButtonClick"/>
-    </HBox>
-</VBox>
+            <!-- Nav Items -->
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                        style="-fx-background: transparent; -fx-background-color: transparent; -fx-border-color: transparent;">
+                <VBox fx:id="navContainer" spacing="4" style="-fx-padding: 0 10 10 10; -fx-background-color: transparent;">
+                    <Button text="My Room Status" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <!-- ACTIVE -->
+                    <Button text="Reserve Room" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: #252636; -fx-text-fill: #f5c400; -fx-font-size: 12px; -fx-font-weight: bold; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Pay Rent" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Assign Room" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Approve Reservation" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="View Records" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="View Reports" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Add New Resident" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Maintenance" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Maintenance Records" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Visitor Log" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Dorm Buildings" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Furniture Mgmt" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                </VBox>
+            </ScrollPane>
+
+            <!-- Back Button -->
+            <VBox style="-fx-padding: 12; -fx-border-color: #2e2f45 transparent transparent transparent; -fx-border-width: 1 0 0 0;">
+                <Button text="← Back to Dashboard" onAction="#onBackButtonClick"
+                        maxWidth="Infinity"
+                        style="-fx-background-color: #e05050; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-padding: 10; -fx-cursor: hand;"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- CENTER -->
+    <center>
+        <VBox spacing="0" style="-fx-background-color: #12131f;">
+            <padding><Insets top="28" right="32" bottom="28" left="32"/></padding>
+
+            <Label text="Dashboard  /  Reserve Room"
+                   style="-fx-text-fill: #8a8a9a; -fx-font-size: 11px;"/>
+            <Label text="Reserve a Room"
+                   style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 26px; -fx-padding: 0 0 8 0;"/>
+
+            <Label text="Select an available room from the list below and click Reserve."
+                   style="-fx-text-fill: #8a8a9a; -fx-font-size: 13px; -fx-padding: 0 0 12 0;"/>
+
+            <!-- Reservation Status Banner -->
+            <HBox fx:id="statusBanner" spacing="10" alignment="CENTER_LEFT"
+                  style="-fx-background-color: #1e2035; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #2e2f45; -fx-border-width: 1; -fx-padding: 12 16; -fx-min-height: 44;">
+                <Label fx:id="statusDot"
+                       style="-fx-background-color: #555570; -fx-background-radius: 50; -fx-min-width: 10; -fx-min-height: 10; -fx-max-width: 10; -fx-max-height: 10;"/>
+                <Label fx:id="statusLabel" text="Checking your reservation status..."
+                       style="-fx-text-fill: #8a8a9a; -fx-font-size: 13px;"/>
+            </HBox>
+
+            <Region prefHeight="12"/>
+
+            <TableView fx:id="roomsTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn text="Room Number" prefWidth="150"/>
+                    <TableColumn text="Capacity" prefWidth="100"/>
+                    <TableColumn text="Status" prefWidth="120"/>
+                    <TableColumn text="Monthly Rate" prefWidth="150"/>
+                </columns>
+            </TableView>
+
+            <HBox spacing="10" alignment="CENTER_RIGHT" style="-fx-padding: 14 0 0 0;">
+                <Button text="Reserve Selected →" onAction="#onReserveButtonClick"
+                        style="-fx-background-color: #f5c400; -fx-text-fill: #12131f; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 8; -fx-cursor: hand;"/>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

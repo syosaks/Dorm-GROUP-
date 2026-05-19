@@ -4,6 +4,7 @@ import com.example.dorm.maintenance.MaintenanceDAO;
 import com.example.dorm.maintenance.MaintenanceRequest;
 import com.example.dorm.room.Room;
 import com.example.dorm.room.RoomDAO;
+import com.example.dorm.shared.BaseController;
 import com.example.dorm.tenant.Tenant;
 import com.example.dorm.tenant.TenantDAO;
 import com.example.dorm.util.SceneManager;
@@ -15,7 +16,7 @@ import javafx.scene.control.*;
 import java.time.LocalDate;
 import java.util.List;
 
-public class FurnitureController {
+public class FurnitureController extends BaseController {
     @FXML private ComboBox<String> roomFilterCombo;
     @FXML private TableView<String[]> furnitureTable;
     @FXML private ComboBox<String> addRoomCombo;
@@ -33,6 +34,7 @@ public class FurnitureController {
     @FXML
     @SuppressWarnings("unchecked")
     public void initialize() {
+        super.initialize();
         TableColumn<String[], String> colRoom   = (TableColumn<String[], String>) furnitureTable.getColumns().get(0);
         TableColumn<String[], String> colItem   = (TableColumn<String[], String>) furnitureTable.getColumns().get(1);
         TableColumn<String[], String> colCond   = (TableColumn<String[], String>) furnitureTable.getColumns().get(2);

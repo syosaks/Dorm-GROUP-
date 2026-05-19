@@ -20,7 +20,10 @@ public class SceneManager {
                 SceneManager.class.getResource("/com/example/dorm/" + fxmlFile)
             );
             Parent root = loader.load();
-            primaryStage.setScene(new Scene(root, 900, 600));
+            Scene scene = new Scene(root, 1100, 680);
+            java.net.URL css = SceneManager.class.getResource("/com/example/dorm/dark-theme.css");
+            if (css != null) scene.getStylesheets().add(css.toExternalForm());
+            primaryStage.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
         }

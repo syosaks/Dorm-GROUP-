@@ -2,6 +2,7 @@ package com.example.dorm.payment;
 
 import com.example.dorm.room.Room;
 import com.example.dorm.room.RoomDAO;
+import com.example.dorm.shared.BaseController;
 import com.example.dorm.tenant.Tenant;
 import com.example.dorm.tenant.TenantDAO;
 import com.example.dorm.auth.User;
@@ -17,7 +18,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PayRentController {
+public class PayRentController extends BaseController {
     @FXML private ComboBox<String> tenantComboBox;
     @FXML private TextField amountField;
     @FXML private TextField monthField;
@@ -32,6 +33,7 @@ public class PayRentController {
     @FXML
     @SuppressWarnings("unchecked")
     public void initialize() {
+        super.initialize();
         TableColumn<Payment, String> colDate   = (TableColumn<Payment, String>) paymentHistoryTable.getColumns().get(0);
         TableColumn<Payment, Double> colAmount = (TableColumn<Payment, Double>) paymentHistoryTable.getColumns().get(1);
         TableColumn<Payment, String> colMonth  = (TableColumn<Payment, String>) paymentHistoryTable.getColumns().get(2);
@@ -43,6 +45,11 @@ public class PayRentController {
         colStatus.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getStatus()));
 
         User user = Session.getCurrentUser();
+        if (user == null) {
+            monthlyRateLabel.setText("Session expired. Please log in again.");
+            tenantComboBox.setDisable(true);
+            return;
+        }
 
         if ("TENANT".equals(user.getRole())) {
             // TENANT: locked to their own profile — cannot pay for anyone else
@@ -93,6 +100,7 @@ public class PayRentController {
 
         // For ADMIN: show the room rate of the selected tenant
         User user = Session.getCurrentUser();
+        if (user == null) return;
         if ("ADMIN".equals(user.getRole()) && tenant.getRoomId() > 0) {
             Room room = roomDAO.getRoomById(tenant.getRoomId());
             if (room != null) {

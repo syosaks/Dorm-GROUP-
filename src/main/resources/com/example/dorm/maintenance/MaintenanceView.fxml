@@ -5,52 +5,142 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<VBox spacing="12.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.dorm.maintenance.MaintenanceController"
-      prefWidth="900" prefHeight="600">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<BorderPane prefWidth="1100" prefHeight="680"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.dorm.maintenance.MaintenanceController"
+            style="-fx-background-color: #12131f;">
 
-    <Label text="Maintenance Requests — Active">
-        <font><Font size="20.0" /></font>
-    </Label>
-    <Label text="Showing PENDING and IN_PROGRESS requests. Resolved records are in Maintenance Records."
-           style="-fx-text-fill: #666; -fx-font-size: 12px;"/>
+    <!-- LEFT SIDEBAR -->
+    <left>
+        <VBox prefWidth="260" style="-fx-background-color: #1a1b2e;">
+            <!-- Logo -->
+            <HBox style="-fx-background-color: #12131f; -fx-padding: 16 14; -fx-spacing: 8;" alignment="CENTER_LEFT">
+                <Label text="DL"
+                       style="-fx-background-color: #f5c400; -fx-text-fill: #12131f; -fx-font-weight: bold; -fx-font-size: 13px; -fx-background-radius: 6; -fx-padding: 4 8;"/>
+                <VBox spacing="1">
+                    <Label text="DormLink"
+                           style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 13px;"/>
+                    <Label text="Management System"
+                           style="-fx-text-fill: #555570; -fx-font-size: 9px;"/>
+                </VBox>
+            </HBox>
 
-    <!-- Submit section: TENANT only -->
-    <VBox fx:id="submitSection" spacing="10"
-          style="-fx-border-color: #90CAF9; -fx-border-radius: 5; -fx-padding: 12; -fx-background-color: #E3F2FD;">
-        <Label text="Submit a New Request" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
-        <TextArea fx:id="descriptionArea" promptText="Describe the issue (e.g. leaking faucet, broken AC)..."
-                  prefRowCount="3" wrapText="true"/>
-        <HBox spacing="10" alignment="CENTER_LEFT">
-            <Label text="Priority:"/>
-            <ComboBox fx:id="priorityCombo" prefWidth="120"/>
-        </HBox>
-        <Button text="Submit Request" onAction="#onSubmitButtonClick"
-                style="-fx-background-color: #1976D2; -fx-text-fill: white;"/>
-    </VBox>
+            <!-- Nav Header -->
+            <Label text="NAVIGATION"
+                   style="-fx-text-fill: #555570; -fx-font-size: 9px; -fx-font-weight: bold; -fx-padding: 10 14 4 14;"/>
 
-    <Label text="Active Requests" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+            <!-- Nav Items -->
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                        style="-fx-background: transparent; -fx-background-color: transparent; -fx-border-color: transparent;">
+                <VBox fx:id="navContainer" spacing="4" style="-fx-padding: 0 10 10 10; -fx-background-color: transparent;">
+                    <Button text="My Room Status" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Reserve Room" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Pay Rent" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Assign Room" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Approve Reservation" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="View Records" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="View Reports" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Add New Resident" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <!-- ACTIVE -->
+                    <Button text="Maintenance" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: #252636; -fx-text-fill: #f5c400; -fx-font-size: 12px; -fx-font-weight: bold; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Maintenance Records" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Visitor Log" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Dorm Buildings" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Furniture Mgmt" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                </VBox>
+            </ScrollPane>
 
-    <TableView fx:id="requestsTable" VBox.vgrow="ALWAYS">
-        <columns>
-            <TableColumn text="Resident"    prefWidth="140"/>
-            <TableColumn text="Description" prefWidth="280"/>
-            <TableColumn text="Date"        prefWidth="110"/>
-            <TableColumn text="Status"      prefWidth="110"/>
-            <TableColumn text="Priority"    prefWidth="90"/>
-        </columns>
-    </TableView>
+            <!-- Back Button -->
+            <VBox style="-fx-padding: 12; -fx-border-color: #2e2f45 transparent transparent transparent; -fx-border-width: 1 0 0 0;">
+                <Button text="← Back to Dashboard" onAction="#onBackButtonClick"
+                        maxWidth="Infinity"
+                        style="-fx-background-color: #e05050; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-padding: 10; -fx-cursor: hand;"/>
+            </VBox>
+        </VBox>
+    </left>
 
-    <HBox spacing="10" alignment="CENTER_RIGHT">
-        <Button fx:id="btnInProgress" text="Mark In Progress" onAction="#onMarkInProgress"
-                style="-fx-background-color: #FF9800; -fx-text-fill: white;"/>
-        <Button fx:id="btnResolved" text="Mark Resolved" onAction="#onMarkResolved"
-                style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
-        <Button text="Resolved Records" onAction="#onViewRecordsClick"
-                style="-fx-background-color: #6A1B9A; -fx-text-fill: white;"/>
-        <Button text="Back to Dashboard" onAction="#onBackButtonClick"/>
-    </HBox>
-</VBox>
+    <!-- CENTER -->
+    <center>
+        <VBox spacing="0" style="-fx-background-color: #12131f;">
+            <padding><Insets top="28" right="32" bottom="28" left="32"/></padding>
+
+            <Label text="Dashboard  /  Maintenance"
+                   style="-fx-text-fill: #8a8a9a; -fx-font-size: 11px;"/>
+            <Label text="Maintenance Requests"
+                   style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 26px; -fx-padding: 0 0 20 0;"/>
+
+            <!-- Submit Section Card -->
+            <VBox fx:id="submitSection" spacing="12"
+                  style="-fx-background-color: #1e2035; -fx-padding: 20; -fx-background-radius: 10; -fx-border-color: #2e2f45; -fx-border-radius: 10;">
+                <VBox.margin><Insets bottom="20"/></VBox.margin>
+
+                <Label text="SUBMIT A REQUEST"
+                       style="-fx-text-fill: #8a8a9a; -fx-font-size: 10px; -fx-font-weight: bold;"/>
+
+                <TextArea fx:id="descriptionArea"
+                          promptText="Describe the issue (e.g. leaking faucet, broken AC)..."
+                          prefRowCount="3" wrapText="true"/>
+
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <Label text="Priority"
+                           style="-fx-text-fill: #8a8a9a; -fx-font-size: 11px;"/>
+                    <ComboBox fx:id="priorityCombo" prefWidth="130"/>
+                </HBox>
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Button text="Submit Request" onAction="#onSubmitButtonClick"
+                            style="-fx-background-color: #f5c400; -fx-text-fill: #12131f; -fx-font-weight: bold; -fx-padding: 9 18; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                </HBox>
+            </VBox>
+
+            <Label text="Active Requests"
+                   style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15px; -fx-padding: 0 0 8 0;"/>
+
+            <TableView fx:id="requestsTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn text="Resident" prefWidth="140"/>
+                    <TableColumn text="Description" prefWidth="280"/>
+                    <TableColumn text="Date" prefWidth="110"/>
+                    <TableColumn text="Status" prefWidth="110"/>
+                    <TableColumn text="Priority" prefWidth="90"/>
+                </columns>
+            </TableView>
+
+            <HBox spacing="10" alignment="CENTER_RIGHT" style="-fx-padding: 12 0 0 0;">
+                <Button fx:id="btnInProgress" text="Mark In Progress" onAction="#onMarkInProgress"
+                        style="-fx-background-color: #f97316; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 9 16; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                <Button fx:id="btnResolved" text="Mark Resolved" onAction="#onMarkResolved"
+                        style="-fx-background-color: #4ade80; -fx-text-fill: #12131f; -fx-font-weight: bold; -fx-padding: 9 16; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                <Button text="View Records" onAction="#onViewRecordsClick"
+                        style="-fx-background-color: #252636; -fx-text-fill: white; -fx-border-color: #3a3b50; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 9 16; -fx-cursor: hand;"/>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

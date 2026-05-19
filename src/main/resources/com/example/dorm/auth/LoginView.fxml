@@ -5,29 +5,82 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="15.0" xmlns:fx="http://javafx.com/fxml"
+<HBox prefWidth="960" prefHeight="600"
+      xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.example.dorm.auth.LoginController"
-      prefWidth="900" prefHeight="600"
-      style="-fx-background-color: #F5F7FA;">
-    <padding>
-        <Insets bottom="40.0" left="280.0" right="280.0" top="40.0"/>
-    </padding>
+      style="-fx-background-color: #12131f;">
 
-    <Label text="DormLink" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #1565C0;"/>
-    <Label text="Dormitory Management System" style="-fx-font-size: 14px; -fx-text-fill: #555;"/>
-    <Label text="Sign In" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-padding: 10 0 0 0;"/>
+    <!-- Left Branding Panel -->
+    <VBox HBox.hgrow="ALWAYS" spacing="16"
+          style="-fx-background-color: #1a1b2e;">
+        <padding><Insets top="60" right="50" bottom="60" left="50"/></padding>
 
-    <Label text="Username"/>
-    <TextField fx:id="usernameField" promptText="Enter username"/>
+        <!-- Logo Row -->
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="DL"
+                   style="-fx-background-color: #f5c400; -fx-text-fill: #12131f; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 8; -fx-padding: 5 10;"/>
+            <Label text="DormLink"
+                   style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18px;"/>
+        </HBox>
 
-    <Label text="Password"/>
-    <PasswordField fx:id="passwordField" promptText="Enter password"/>
+        <Label text="Dormitory Management System"
+               style="-fx-text-fill: #8a8a9a; -fx-font-size: 11px;"/>
 
-    <Label text="Role"/>
-    <ComboBox fx:id="roleComboBox" maxWidth="Infinity"/>
+        <Region prefHeight="20"/>
 
-    <Button text="Login" onAction="#onLoginButtonClick" maxWidth="Infinity"
-            style="-fx-background-color: #1565C0; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10;"/>
+        <Label text="Manage Your&#10;Dorm with ease."
+               wrapText="true"
+               style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 32px;"/>
 
-    <Label fx:id="errorLabel" style="-fx-text-fill: #C62828;"/>
-</VBox>
+        <Region prefHeight="10"/>
+
+        <Label text="Register tenants, manage rooms,&#10;track payments and maintenance&#10;all in one place."
+               wrapText="true"
+               style="-fx-text-fill: #8a8a9a; -fx-font-size: 13px;"/>
+
+        <Region VBox.vgrow="ALWAYS"/>
+
+        <Label text="© 2026 DormLink · Dormitory Management System"
+               style="-fx-text-fill: #8a8a9a; -fx-font-size: 10px;"/>
+    </VBox>
+
+    <!-- Right Form Panel -->
+    <VBox HBox.hgrow="ALWAYS" spacing="6" alignment="CENTER"
+          style="-fx-background-color: #12131f;">
+        <padding><Insets top="60" right="50" bottom="60" left="50"/></padding>
+
+        <Label text="Welcome back"
+               style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 24px;"/>
+        <Label text="Sign in to access your dashboard."
+               style="-fx-text-fill: #8a8a9a; -fx-font-size: 13px;"/>
+
+        <Region prefHeight="20"/>
+
+        <Label text="USERNAME"
+               style="-fx-text-fill: #8a8a9a; -fx-font-size: 10px; -fx-font-weight: bold; -fx-padding: 8 0 0 0;"/>
+        <TextField fx:id="usernameField"
+                   promptText="Enter your username"
+                   maxWidth="Infinity"/>
+
+        <Label text="PASSWORD"
+               style="-fx-text-fill: #8a8a9a; -fx-font-size: 10px; -fx-font-weight: bold; -fx-padding: 8 0 0 0;"/>
+        <PasswordField fx:id="passwordField"
+                       promptText="••••••••"
+                       maxWidth="Infinity"/>
+
+        <Label text="ROLE"
+               style="-fx-text-fill: #8a8a9a; -fx-font-size: 10px; -fx-font-weight: bold; -fx-padding: 8 0 0 0;"/>
+        <ComboBox fx:id="roleComboBox" maxWidth="Infinity"/>
+
+        <Region prefHeight="8"/>
+
+        <Button text="Sign In →"
+                onAction="#onLoginButtonClick"
+                maxWidth="Infinity"
+                style="-fx-background-color: #f5c400; -fx-text-fill: #12131f; -fx-font-weight: bold; -fx-font-size: 14px; -fx-padding: 12; -fx-background-radius: 8; -fx-cursor: hand;"/>
+
+        <Label fx:id="errorLabel" text=""
+               style="-fx-text-fill: #e05050; -fx-font-size: 13px;"/>
+    </VBox>
+</HBox>

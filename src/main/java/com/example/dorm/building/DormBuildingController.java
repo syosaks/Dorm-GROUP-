@@ -2,6 +2,7 @@ package com.example.dorm.building;
 
 import com.example.dorm.room.Room;
 import com.example.dorm.room.RoomDAO;
+import com.example.dorm.shared.BaseController;
 import com.example.dorm.util.SceneManager;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -11,7 +12,7 @@ import javafx.scene.control.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DormBuildingController {
+public class DormBuildingController extends BaseController {
     @FXML private TextField buildingNameField;
     @FXML private TextField totalFloorsField;
     @FXML private TextField addressField;
@@ -27,6 +28,7 @@ public class DormBuildingController {
     @FXML
     @SuppressWarnings("unchecked")
     public void initialize() {
+        super.initialize();
         // Buildings table
         TableColumn<String[], String> colName  = (TableColumn<String[], String>) buildingsTable.getColumns().get(0);
         TableColumn<String[], String> colFloor = (TableColumn<String[], String>) buildingsTable.getColumns().get(1);

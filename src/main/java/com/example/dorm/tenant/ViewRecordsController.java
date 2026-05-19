@@ -4,6 +4,7 @@ import com.example.dorm.payment.Payment;
 import com.example.dorm.payment.PaymentDAO;
 import com.example.dorm.room.Room;
 import com.example.dorm.room.RoomDAO;
+import com.example.dorm.shared.BaseController;
 import com.example.dorm.util.SceneManager;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -15,7 +16,7 @@ import javafx.scene.control.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewRecordsController {
+public class ViewRecordsController extends BaseController {
     @FXML private TextField searchField;
     @FXML private ComboBox<String> filterComboBox;
     @FXML private TableView<String[]> recordsTable;
@@ -27,6 +28,7 @@ public class ViewRecordsController {
     @FXML
     @SuppressWarnings("unchecked")
     public void initialize() {
+        super.initialize();
         filterComboBox.getItems().addAll("Tenants", "Rooms", "Payments");
         filterComboBox.setValue("Tenants");
 

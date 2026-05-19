@@ -1,5 +1,6 @@
 package com.example.dorm.room;
 
+import com.example.dorm.shared.BaseController;
 import com.example.dorm.tenant.Tenant;
 import com.example.dorm.tenant.TenantDAO;
 import com.example.dorm.util.DatabaseConnection;
@@ -11,7 +12,7 @@ import javafx.scene.control.*;
 
 import java.util.List;
 
-public class AssignRoomController {
+public class AssignRoomController extends BaseController {
     @FXML private ComboBox<String> tenantComboBox;
     @FXML private ComboBox<String> roomComboBox;
     @FXML private TableView<String[]> assignmentsTable;
@@ -24,6 +25,7 @@ public class AssignRoomController {
     @FXML
     @SuppressWarnings("unchecked")
     public void initialize() {
+        super.initialize();
         TableColumn<String[], String> colTenant   = (TableColumn<String[], String>) assignmentsTable.getColumns().get(0);
         TableColumn<String[], String> colRoom     = (TableColumn<String[], String>) assignmentsTable.getColumns().get(1);
         TableColumn<String[], String> colCapacity = (TableColumn<String[], String>) assignmentsTable.getColumns().get(2);

@@ -4,12 +4,13 @@ import com.example.dorm.reservation.ReservationDAO;
 import com.example.dorm.room.Room;
 import com.example.dorm.room.RoomDAO;
 import com.example.dorm.auth.User;
+import com.example.dorm.shared.BaseController;
 import com.example.dorm.util.SceneManager;
 import com.example.dorm.util.Session;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class TenantStatusController {
+public class TenantStatusController extends BaseController {
     @FXML private Label lblName;
     @FXML private Label lblContact;
     @FXML private Label lblEmail;
@@ -23,6 +24,7 @@ public class TenantStatusController {
 
     @FXML
     public void initialize() {
+        super.initialize();
         User user = Session.getCurrentUser();
         if (user == null) return;
 

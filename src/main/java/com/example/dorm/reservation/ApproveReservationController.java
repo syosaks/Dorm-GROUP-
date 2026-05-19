@@ -2,6 +2,7 @@ package com.example.dorm.reservation;
 
 import com.example.dorm.room.Room;
 import com.example.dorm.room.RoomDAO;
+import com.example.dorm.shared.BaseController;
 import com.example.dorm.tenant.TenantDAO;
 import com.example.dorm.util.DatabaseConnection;
 import com.example.dorm.util.SceneManager;
@@ -12,7 +13,7 @@ import javafx.scene.control.*;
 
 import java.util.List;
 
-public class ApproveReservationController {
+public class ApproveReservationController extends BaseController {
     @FXML private TableView<String[]> reservationsTable;
 
     private final ReservationDAO reservationDAO = new ReservationDAO();
@@ -22,6 +23,7 @@ public class ApproveReservationController {
     @FXML
     @SuppressWarnings("unchecked")
     public void initialize() {
+        super.initialize();
         TableColumn<String[], String> colTenant = (TableColumn<String[], String>) reservationsTable.getColumns().get(0);
         TableColumn<String[], String> colRoom   = (TableColumn<String[], String>) reservationsTable.getColumns().get(1);
         TableColumn<String[], String> colDate   = (TableColumn<String[], String>) reservationsTable.getColumns().get(2);

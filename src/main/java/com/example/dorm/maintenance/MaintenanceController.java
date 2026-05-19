@@ -1,5 +1,6 @@
 package com.example.dorm.maintenance;
 
+import com.example.dorm.shared.BaseController;
 import com.example.dorm.tenant.Tenant;
 import com.example.dorm.tenant.TenantDAO;
 import com.example.dorm.auth.User;
@@ -16,7 +17,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MaintenanceController {
+public class MaintenanceController extends BaseController {
     @FXML private VBox submitSection;
     @FXML private TextArea descriptionArea;
     @FXML private ComboBox<String> priorityCombo;
@@ -30,6 +31,7 @@ public class MaintenanceController {
     @FXML
     @SuppressWarnings("unchecked")
     public void initialize() {
+        super.initialize();
         TableColumn<String[], String> colTenant   = (TableColumn<String[], String>) requestsTable.getColumns().get(0);
         TableColumn<String[], String> colDesc     = (TableColumn<String[], String>) requestsTable.getColumns().get(1);
         TableColumn<String[], String> colDate     = (TableColumn<String[], String>) requestsTable.getColumns().get(2);
@@ -44,6 +46,7 @@ public class MaintenanceController {
         colPriority.setCellValueFactory(d -> new SimpleStringProperty(d.getValue()[5]));
 
         User user = Session.getCurrentUser();
+        if (user == null) return;
         boolean isTenant = "TENANT".equals(user.getRole());
 
         submitSection.setVisible(isTenant);
@@ -63,6 +66,7 @@ public class MaintenanceController {
 
     private void loadRequests() {
         User user = Session.getCurrentUser();
+        if (user == null) return;
 
         // Multithreading: load maintenance data in background so UI stays responsive
         Task<List<String[]>> loadTask = new Task<List<String[]>>() {
@@ -96,6 +100,7 @@ public class MaintenanceController {
         if (desc.isEmpty()) { showAlert("Please describe the issue before submitting."); return; }
 
         User user = Session.getCurrentUser();
+        if (user == null) { showAlert("Session expired. Please log in again."); return; }
         Tenant tenant = tenantDAO.getByUserId(user.getId());
         if (tenant == null) { showAlert("No resident profile found. Contact the admin."); return; }
 

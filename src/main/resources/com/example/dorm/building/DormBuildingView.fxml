@@ -5,72 +5,161 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<VBox spacing="12.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.dorm.building.DormBuildingController"
-      prefWidth="1000" prefHeight="650">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<BorderPane prefWidth="1100" prefHeight="700"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.dorm.building.DormBuildingController"
+            style="-fx-background-color: #12131f;">
 
-    <Label text="Dorm Buildings">
-        <font><Font size="20.0" /></font>
-    </Label>
-
-    <!-- Buildings summary table -->
-    <TableView fx:id="buildingsTable" prefHeight="160">
-        <columns>
-            <TableColumn text="Building Name" prefWidth="220"/>
-            <TableColumn text="Floors"        prefWidth="100"/>
-            <TableColumn text="Address"       prefWidth="300"/>
-            <TableColumn text="Rooms"         prefWidth="110"/>
-        </columns>
-    </TableView>
-
-    <!-- Add new building form -->
-    <TitledPane text="Add New Building" expanded="false"
-                style="-fx-background-color: #E8F5E9;">
-        <VBox spacing="8" style="-fx-padding: 10;">
-            <GridPane hgap="12" vgap="8">
-                <Label text="Building Name:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                <TextField fx:id="buildingNameField" promptText="e.g. Building C — East Wing"
-                           prefWidth="300" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-
-                <Label text="Total Floors:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                <TextField fx:id="totalFloorsField" promptText="e.g. 3"
-                           prefWidth="100" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-
-                <Label text="Address:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-                <TextField fx:id="addressField" promptText="e.g. 127 Dormitory St., Campus"
-                           prefWidth="300" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-            </GridPane>
-            <HBox spacing="10" alignment="CENTER_LEFT">
-                <Button text="Add Building" onAction="#onAddBuildingClick"
-                        style="-fx-background-color: #388E3C; -fx-text-fill: white;"/>
-                <Label fx:id="statusLabel" text=""/>
+    <!-- LEFT SIDEBAR -->
+    <left>
+        <VBox prefWidth="260" style="-fx-background-color: #1a1b2e;">
+            <!-- Logo -->
+            <HBox style="-fx-background-color: #12131f; -fx-padding: 16 14; -fx-spacing: 8;" alignment="CENTER_LEFT">
+                <Label text="DL"
+                       style="-fx-background-color: #f5c400; -fx-text-fill: #12131f; -fx-font-weight: bold; -fx-font-size: 13px; -fx-background-radius: 6; -fx-padding: 4 8;"/>
+                <VBox spacing="1">
+                    <Label text="DormLink"
+                           style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 13px;"/>
+                    <Label text="Management System"
+                           style="-fx-text-fill: #555570; -fx-font-size: 9px;"/>
+                </VBox>
             </HBox>
+
+            <!-- Nav Header -->
+            <Label text="NAVIGATION"
+                   style="-fx-text-fill: #555570; -fx-font-size: 9px; -fx-font-weight: bold; -fx-padding: 10 14 4 14;"/>
+
+            <!-- Nav Items -->
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                        style="-fx-background: transparent; -fx-background-color: transparent; -fx-border-color: transparent;">
+                <VBox fx:id="navContainer" spacing="4" style="-fx-padding: 0 10 10 10; -fx-background-color: transparent;">
+                    <Button text="My Room Status" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Reserve Room" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Pay Rent" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Assign Room" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Approve Reservation" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="View Records" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="View Reports" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Add New Resident" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Maintenance" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Maintenance Records" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Visitor Log" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <!-- ACTIVE -->
+                    <Button text="Dorm Buildings" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: #252636; -fx-text-fill: #f5c400; -fx-font-size: 12px; -fx-font-weight: bold; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Furniture Mgmt" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                </VBox>
+            </ScrollPane>
+
+            <!-- Back Button -->
+            <VBox style="-fx-padding: 12; -fx-border-color: #2e2f45 transparent transparent transparent; -fx-border-width: 1 0 0 0;">
+                <Button text="← Back to Dashboard" onAction="#onBackButtonClick"
+                        maxWidth="Infinity"
+                        style="-fx-background-color: #e05050; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-padding: 10; -fx-cursor: hand;"/>
+            </VBox>
         </VBox>
-    </TitledPane>
+    </left>
 
-    <Separator/>
+    <!-- CENTER -->
+    <center>
+        <VBox spacing="0" style="-fx-background-color: #12131f;">
+            <padding><Insets top="28" right="32" bottom="28" left="32"/></padding>
 
-    <!-- Rooms by building -->
-    <HBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="Rooms by Building:" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
-        <ComboBox fx:id="buildingFilterCombo" prefWidth="200"/>
-    </HBox>
+            <Label text="Dashboard  /  Buildings"
+                   style="-fx-text-fill: #8a8a9a; -fx-font-size: 11px;"/>
+            <Label text="Dorm Buildings"
+                   style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 26px; -fx-padding: 0 0 20 0;"/>
 
-    <TableView fx:id="roomsTable" VBox.vgrow="ALWAYS">
-        <columns>
-            <TableColumn text="Room"     prefWidth="80"/>
-            <TableColumn text="Building" prefWidth="180"/>
-            <TableColumn text="Floor"    prefWidth="90"/>
-            <TableColumn text="Capacity" prefWidth="90"/>
-            <TableColumn text="Status"   prefWidth="110"/>
-            <TableColumn text="Rate"     prefWidth="120"/>
-        </columns>
-    </TableView>
+            <Label text="Buildings"
+                   style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15px; -fx-padding: 0 0 8 0;"/>
 
-    <HBox spacing="10" alignment="CENTER_RIGHT">
-        <Button text="Back to Dashboard" onAction="#onBackButtonClick"/>
-    </HBox>
-</VBox>
+            <TableView fx:id="buildingsTable" prefHeight="180">
+                <columns>
+                    <TableColumn text="Building Name" prefWidth="220"/>
+                    <TableColumn text="Floors" prefWidth="100"/>
+                    <TableColumn text="Address" prefWidth="300"/>
+                    <TableColumn text="Rooms" prefWidth="110"/>
+                </columns>
+            </TableView>
+
+            <!-- Add Building Accordion -->
+            <TitledPane text="Add New Building" expanded="false">
+                <VBox spacing="10" style="-fx-padding: 16;">
+                    <GridPane hgap="16" vgap="10">
+                        <Label text="Building Name"
+                               style="-fx-text-fill: #8a8a9a; -fx-font-size: 11px;"
+                               GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <TextField fx:id="buildingNameField" promptText="e.g. Building C"
+                                   prefWidth="300"
+                                   GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                        <Label text="Total Floors"
+                               style="-fx-text-fill: #8a8a9a; -fx-font-size: 11px;"
+                               GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                        <TextField fx:id="totalFloorsField" promptText="e.g. 3"
+                                   prefWidth="100"
+                                   GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                        <Label text="Address"
+                               style="-fx-text-fill: #8a8a9a; -fx-font-size: 11px;"
+                               GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                        <TextField fx:id="addressField" promptText="127 Dormitory St."
+                                   prefWidth="300"
+                                   GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                    </GridPane>
+                    <HBox spacing="12">
+                        <Button text="Add Building" onAction="#onAddBuildingClick"
+                                style="-fx-background-color: #f5c400; -fx-text-fill: #12131f; -fx-font-weight: bold; -fx-padding: 9 18; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                        <Label fx:id="statusLabel" text=""
+                               style="-fx-text-fill: #8a8a9a;"/>
+                    </HBox>
+                </VBox>
+            </TitledPane>
+
+            <Separator style="-fx-padding: 8 0;"/>
+
+            <HBox spacing="12" alignment="CENTER_LEFT" style="-fx-padding: 0 0 8 0;">
+                <Label text="Rooms by Building"
+                       style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;"/>
+                <ComboBox fx:id="buildingFilterCombo" prefWidth="200"/>
+            </HBox>
+
+            <TableView fx:id="roomsTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn text="Room" prefWidth="80"/>
+                    <TableColumn text="Building" prefWidth="180"/>
+                    <TableColumn text="Floor" prefWidth="90"/>
+                    <TableColumn text="Capacity" prefWidth="90"/>
+                    <TableColumn text="Status" prefWidth="110"/>
+                    <TableColumn text="Rate" prefWidth="120"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>

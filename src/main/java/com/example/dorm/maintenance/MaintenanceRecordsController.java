@@ -1,5 +1,6 @@
 package com.example.dorm.maintenance;
 
+import com.example.dorm.shared.BaseController;
 import com.example.dorm.tenant.Tenant;
 import com.example.dorm.tenant.TenantDAO;
 import com.example.dorm.auth.User;
@@ -17,7 +18,7 @@ import java.util.List;
  * Displays RESOLVED maintenance records only.
  * Accessible to all roles; tenants see only their own resolved requests.
  */
-public class MaintenanceRecordsController {
+public class MaintenanceRecordsController extends BaseController {
     @FXML private TableView<String[]> recordsTable;
     @FXML private Label summaryLabel;
 
@@ -27,6 +28,7 @@ public class MaintenanceRecordsController {
     @FXML
     @SuppressWarnings("unchecked")
     public void initialize() {
+        super.initialize();
         TableColumn<String[], String> colTenant   = (TableColumn<String[], String>) recordsTable.getColumns().get(0);
         TableColumn<String[], String> colDesc     = (TableColumn<String[], String>) recordsTable.getColumns().get(1);
         TableColumn<String[], String> colDate     = (TableColumn<String[], String>) recordsTable.getColumns().get(2);
@@ -45,6 +47,10 @@ public class MaintenanceRecordsController {
 
     private void loadRecords() {
         User user = Session.getCurrentUser();
+        if (user == null) {
+            summaryLabel.setText("Session expired. Please log in again.");
+            return;
+        }
         List<String[]> data;
 
         if ("TENANT".equals(user.getRole())) {

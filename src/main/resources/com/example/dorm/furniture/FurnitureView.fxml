@@ -5,68 +5,162 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<VBox spacing="12.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.dorm.furniture.FurnitureController"
-      prefWidth="1000" prefHeight="650">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<BorderPane prefWidth="1100" prefHeight="700"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.dorm.furniture.FurnitureController"
+            style="-fx-background-color: #12131f;">
 
-    <Label text="Furniture Management">
-        <font><Font size="20.0" /></font>
-    </Label>
-    <Label text="Track furniture condition per room. Marking an item BROKEN auto-creates a HIGH priority maintenance ticket."
-           style="-fx-text-fill: #C62828; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+    <!-- LEFT SIDEBAR -->
+    <left>
+        <VBox prefWidth="260" style="-fx-background-color: #1a1b2e;">
+            <!-- Logo -->
+            <HBox style="-fx-background-color: #12131f; -fx-padding: 16 14; -fx-spacing: 8;" alignment="CENTER_LEFT">
+                <Label text="DL"
+                       style="-fx-background-color: #f5c400; -fx-text-fill: #12131f; -fx-font-weight: bold; -fx-font-size: 13px; -fx-background-radius: 6; -fx-padding: 4 8;"/>
+                <VBox spacing="1">
+                    <Label text="DormLink"
+                           style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 13px;"/>
+                    <Label text="Management System"
+                           style="-fx-text-fill: #555570; -fx-font-size: 9px;"/>
+                </VBox>
+            </HBox>
 
-    <!-- Add furniture form -->
-    <TitledPane text="Add Furniture" expanded="false"
-                style="-fx-background-color: #FFF3E0;">
-        <VBox spacing="8" style="-fx-padding: 10;">
-            <GridPane hgap="12" vgap="8">
-                <Label text="Room:"        GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                <ComboBox fx:id="addRoomCombo" prefWidth="160" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <!-- Nav Header -->
+            <Label text="NAVIGATION"
+                   style="-fx-text-fill: #555570; -fx-font-size: 9px; -fx-font-weight: bold; -fx-padding: 10 14 4 14;"/>
 
-                <Label text="Item Type:"   GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                <TextField fx:id="itemTypeField" promptText="e.g. Bed Frame, Study Desk"
-                           prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <!-- Nav Items -->
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                        style="-fx-background: transparent; -fx-background-color: transparent; -fx-border-color: transparent;">
+                <VBox fx:id="navContainer" spacing="4" style="-fx-padding: 0 10 10 10; -fx-background-color: transparent;">
+                    <Button text="My Room Status" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Reserve Room" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Pay Rent" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Assign Room" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Approve Reservation" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="View Records" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="View Reports" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Add New Resident" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Maintenance" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Maintenance Records" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Visitor Log" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <Button text="Dorm Buildings" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: transparent; -fx-text-fill: #8a8a9a; -fx-font-size: 12px; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                    <!-- ACTIVE -->
+                    <Button text="Furniture Mgmt" onAction="#onNavClick"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: #252636; -fx-text-fill: #f5c400; -fx-font-size: 12px; -fx-font-weight: bold; -fx-padding: 9 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: transparent;"/>
+                </VBox>
+            </ScrollPane>
 
-                <Label text="Condition:"   GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-                <ComboBox fx:id="conditionCombo" prefWidth="130" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <!-- Back Button -->
+            <VBox style="-fx-padding: 12; -fx-border-color: #2e2f45 transparent transparent transparent; -fx-border-width: 1 0 0 0;">
+                <Button text="← Back to Dashboard" onAction="#onBackButtonClick"
+                        maxWidth="Infinity"
+                        style="-fx-background-color: #e05050; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-padding: 10; -fx-cursor: hand;"/>
+            </VBox>
+        </VBox>
+    </left>
 
-                <Label text="Serial No.:"  GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-                <TextField fx:id="serialField" promptText="e.g. BF-101-003"
-                           prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-            </GridPane>
-            <HBox spacing="10" alignment="CENTER_LEFT">
-                <Button text="Add Furniture" onAction="#onAddFurnitureClick"
-                        style="-fx-background-color: #E65100; -fx-text-fill: white;"/>
-                <Label fx:id="statusLabel" text="" wrapText="true" maxWidth="400"/>
+    <!-- CENTER -->
+    <center>
+        <VBox spacing="0" style="-fx-background-color: #12131f;">
+            <padding><Insets top="28" right="32" bottom="28" left="32"/></padding>
+
+            <Label text="Dashboard  /  Furniture"
+                   style="-fx-text-fill: #8a8a9a; -fx-font-size: 11px;"/>
+            <Label text="Furniture Management"
+                   style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 26px; -fx-padding: 0 0 8 0;"/>
+
+            <Label text="Marking an item BROKEN auto-creates a HIGH priority maintenance ticket."
+                   style="-fx-text-fill: #e05050; -fx-font-size: 12px; -fx-padding: 0 0 8 0;"/>
+
+            <!-- Add Furniture Accordion -->
+            <TitledPane text="Add Furniture" expanded="false">
+                <VBox spacing="12" style="-fx-padding: 16;">
+                    <GridPane hgap="16" vgap="10">
+                        <Label text="Room"
+                               style="-fx-text-fill: #8a8a9a; -fx-font-size: 11px;"
+                               GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <ComboBox fx:id="addRoomCombo" prefWidth="160"
+                                  GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                        <Label text="Item Type"
+                               style="-fx-text-fill: #8a8a9a; -fx-font-size: 11px;"
+                               GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                        <TextField fx:id="itemTypeField" promptText="e.g. Bed Frame, Study Desk"
+                                   prefWidth="200"
+                                   GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                        <Label text="Condition"
+                               style="-fx-text-fill: #8a8a9a; -fx-font-size: 11px;"
+                               GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                        <ComboBox fx:id="conditionCombo" prefWidth="130"
+                                  GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                        <Label text="Serial No."
+                               style="-fx-text-fill: #8a8a9a; -fx-font-size: 11px;"
+                               GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                        <TextField fx:id="serialField" promptText="e.g. BF-101-003"
+                                   prefWidth="200"
+                                   GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                    </GridPane>
+                    <HBox spacing="12">
+                        <Button text="Add Furniture" onAction="#onAddFurnitureClick"
+                                style="-fx-background-color: #f5c400; -fx-text-fill: #12131f; -fx-font-weight: bold; -fx-padding: 9 18; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                        <Label fx:id="statusLabel" text="" wrapText="true" maxWidth="400"
+                               style="-fx-text-fill: #8a8a9a;"/>
+                    </HBox>
+                </VBox>
+            </TitledPane>
+
+            <HBox spacing="12" alignment="CENTER_LEFT" style="-fx-padding: 16 0 8 0;">
+                <Label text="Filter by Room"
+                       style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;"/>
+                <ComboBox fx:id="roomFilterCombo" prefWidth="160"/>
+            </HBox>
+
+            <TableView fx:id="furnitureTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn text="Room" prefWidth="100"/>
+                    <TableColumn text="Item Type" prefWidth="180"/>
+                    <TableColumn text="Condition" prefWidth="110"/>
+                    <TableColumn text="Serial No." prefWidth="180"/>
+                </columns>
+            </TableView>
+
+            <HBox spacing="10" alignment="CENTER_RIGHT" style="-fx-padding: 12 0 0 0;">
+                <Button text="Mark Good" onAction="#onMarkGoodClick"
+                        style="-fx-background-color: #4ade80; -fx-text-fill: #12131f; -fx-font-weight: bold; -fx-padding: 9 16; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                <Button text="Mark Damaged" onAction="#onMarkDamagedClick"
+                        style="-fx-background-color: #f97316; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 9 16; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                <Button text="Mark BROKEN" onAction="#onMarkBrokenClick"
+                        style="-fx-background-color: #e05050; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 9 16; -fx-background-radius: 8; -fx-cursor: hand;"/>
             </HBox>
         </VBox>
-    </TitledPane>
-
-    <!-- Filter -->
-    <HBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="Filter by Room:" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
-        <ComboBox fx:id="roomFilterCombo" prefWidth="160"/>
-    </HBox>
-
-    <TableView fx:id="furnitureTable" VBox.vgrow="ALWAYS">
-        <columns>
-            <TableColumn text="Room"        prefWidth="100"/>
-            <TableColumn text="Item Type"   prefWidth="180"/>
-            <TableColumn text="Condition"   prefWidth="110"/>
-            <TableColumn text="Serial No."  prefWidth="180"/>
-        </columns>
-    </TableView>
-
-    <HBox spacing="10" alignment="CENTER_RIGHT">
-        <Button text="Mark Good"    onAction="#onMarkGoodClick"
-                style="-fx-background-color: #388E3C; -fx-text-fill: white;"/>
-        <Button text="Mark Damaged" onAction="#onMarkDamagedClick"
-                style="-fx-background-color: #F57C00; -fx-text-fill: white;"/>
-        <Button text="Mark BROKEN"  onAction="#onMarkBrokenClick"
-                style="-fx-background-color: #C62828; -fx-text-fill: white;"/>
-        <Button text="Back to Dashboard" onAction="#onBackButtonClick"/>
-    </HBox>
-</VBox>
+    </center>
+</BorderPane>

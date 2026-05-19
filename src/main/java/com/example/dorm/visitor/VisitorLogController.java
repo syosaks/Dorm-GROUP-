@@ -1,5 +1,6 @@
 package com.example.dorm.visitor;
 
+import com.example.dorm.shared.BaseController;
 import com.example.dorm.tenant.Tenant;
 import com.example.dorm.tenant.TenantDAO;
 import com.example.dorm.auth.User;
@@ -18,7 +19,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VisitorLogController {
+public class VisitorLogController extends BaseController {
     @FXML private VBox submitSection;
     @FXML private TextField visitorNameField;
     @FXML private TextField purposeField;
@@ -35,6 +36,7 @@ public class VisitorLogController {
     @FXML
     @SuppressWarnings("unchecked")
     public void initialize() {
+        super.initialize();
         TableColumn<String[], String> colVisitor   = (TableColumn<String[], String>) logsTable.getColumns().get(0);
         TableColumn<String[], String> colResident  = (TableColumn<String[], String>) logsTable.getColumns().get(1);
         TableColumn<String[], String> colDate      = (TableColumn<String[], String>) logsTable.getColumns().get(2);
@@ -51,6 +53,7 @@ public class VisitorLogController {
         colPurpose.setCellValueFactory(d  -> new SimpleStringProperty(d.getValue()[5]));
 
         User user = Session.getCurrentUser();
+        if (user == null) return;
         boolean isTenant = "TENANT".equals(user.getRole());
 
         submitSection.setVisible(isTenant);
@@ -63,6 +66,7 @@ public class VisitorLogController {
 
     private void loadLogs() {
         User user = Session.getCurrentUser();
+        if (user == null) return;
         List<String[]> data;
         if ("TENANT".equals(user.getRole())) {
             Tenant tenant = tenantDAO.getByUserId(user.getId());
@@ -98,6 +102,7 @@ public class VisitorLogController {
         }
 
         User user = Session.getCurrentUser();
+        if (user == null) { showAlert("Session expired. Please log in again."); return; }
         Tenant tenant = tenantDAO.getByUserId(user.getId());
         if (tenant == null) { showAlert("No resident profile found. Contact admin."); return; }
 
@@ -134,7 +139,7 @@ public class VisitorLogController {
                 showAlert("Time Out cannot be empty.");
             } else if (!isValidTime(timeOut)) {
                 showAlert("Time Out must be in HH:mm format.");
-            } else if (!LocalTime.parse(timeOut, TIME_FMT).isAfter(LocalTime.parse(selected[3], TIME_FMT))) {
+            } else if (isValidTime(selected[3]) && !LocalTime.parse(timeOut, TIME_FMT).isAfter(LocalTime.parse(selected[3], TIME_FMT))) {
                 showAlert("Time Out must be after Time In (" + selected[3] + ").");
             } else {
                 int id = Integer.parseInt(selected[6]);

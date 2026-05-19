@@ -1,5 +1,6 @@
 package com.example.dorm.report;
 
+import com.example.dorm.shared.BaseController;
 import com.example.dorm.util.SceneManager;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -9,7 +10,7 @@ import javafx.scene.control.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewReportsController {
+public class ViewReportsController extends BaseController {
     @FXML private ComboBox<String> reportTypeComboBox;
     @FXML private TextField dateFromField;
     @FXML private TextField dateToField;
@@ -21,6 +22,7 @@ public class ViewReportsController {
     @FXML
     @SuppressWarnings("unchecked")
     public void initialize() {
+        super.initialize();
         reportTypeComboBox.getItems().addAll("Occupancy", "Revenue", "Reservations");
         reportTypeComboBox.setValue("Occupancy");
 

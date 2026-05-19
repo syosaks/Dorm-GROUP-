@@ -1,6 +1,7 @@
 package com.example.dorm.tenant;
 
 import com.example.dorm.auth.UserDAO;
+import com.example.dorm.shared.BaseController;
 import com.example.dorm.util.DatabaseConnection;
 import com.example.dorm.util.SceneManager;
 import javafx.beans.property.SimpleStringProperty;
@@ -11,7 +12,7 @@ import javafx.scene.control.*;
 
 import java.util.List;
 
-public class AddTenantController {
+public class AddTenantController extends BaseController {
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
     @FXML private TextField nameField;
@@ -26,6 +27,7 @@ public class AddTenantController {
     @FXML
     @SuppressWarnings("unchecked")
     public void initialize() {
+        super.initialize();
         TableColumn<String[], String> colName    = (TableColumn<String[], String>) tenantsTable.getColumns().get(0);
         TableColumn<String[], String> colUser    = (TableColumn<String[], String>) tenantsTable.getColumns().get(1);
         TableColumn<String[], String> colContact = (TableColumn<String[], String>) tenantsTable.getColumns().get(2);
